@@ -48,15 +48,20 @@ A full-stack task management application built using the MERN stack. Users can r
 project-root/
 │
 ├── backend/
+│   ├── config/
 │   ├── controllers/
 │   ├── middleware/
 │   ├── models/
 │   ├── routes/
+│   ├── utils/
+│   ├── env
 │   └── index.js
 │
 ├── frontend/
 │   ├── src/
+│   └── api/
 │   └── components/
+│   └── pages/
 │
 └── README.md
 ```
@@ -68,7 +73,7 @@ project-root/
 Create a `.env` file in backend:
 
 ```
-PORT=5000
+PORT=3000
 MONGO_URI=your_mongodb_connection
 JWT_SECRET=your_secret_key
 ```
