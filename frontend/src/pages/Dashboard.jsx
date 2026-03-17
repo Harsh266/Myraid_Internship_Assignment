@@ -5,6 +5,7 @@ import Sidebar from "../components/Sidebar";
 import TaskChart from "../components/TaskChart";
 import ProgressCircle from "../components/ProgressCircle";
 import { Search, Plus, ArrowUpRight, ListTodo, CheckCircle, Clock, Circle } from "lucide-react";
+import toast from "react-hot-toast";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -110,11 +111,17 @@ export default function Dashboard() {
     fetchStats();
   };
 
-  const logout = async () => {
+const logout = async () => {
+  try {
     await api.post("/auth/logout");
-    navigate("/login");
-  };
 
+    toast.success("Logged out successfully");
+
+    navigate("/login");
+  } catch (err) {
+    toast.error("Logout failed");
+  }
+};
   return (
     <div className="flex min-h-screen bg-gray-50">
       <Sidebar user={user} logout={logout} />
