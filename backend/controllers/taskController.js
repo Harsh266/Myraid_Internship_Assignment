@@ -142,10 +142,18 @@ exports.getDashboardStats = async (req, res) => {
     const completionRatio =
       totalTasks === 0 ? 0 : ((completedTasks / totalTasks) * 100).toFixed(1);
 
+    const today = new Date();
+    const last7DaysDate = new Date();
+    last7DaysDate.setDate(today.getDate() - 6);
+
     const last7Days = await Task.aggregate([
       {
         $match: {
           userId: new mongoose.Types.ObjectId(req.userId),
+          createdAt: {
+            $gte: last7DaysDate,
+            $lte: today,
+          },
         },
       },
       {
@@ -154,6 +162,7 @@ exports.getDashboardStats = async (req, res) => {
             $dateToString: {
               format: "%Y-%m-%d",
               date: "$createdAt",
+              timezone: "Asia/Kolkata",
             },
           },
           count: { $sum: 1 },
