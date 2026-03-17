@@ -20,8 +20,8 @@ app.use(cors({
     credentials: true
 }));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "dist", "index.html"));
+app.use((req, res) => {
+  res.status(404).json({ message: "Route not found" });
 });
 
 
