@@ -20,11 +20,6 @@ app.use(cors({
     credentials: true
 }));
 
-res.cookie("token", token, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "none"
-});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
