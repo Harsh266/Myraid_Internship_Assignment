@@ -57,18 +57,10 @@ exports.updateTask = async (req, res) => {
     try {
         const { status } = req.body;
 
-        if (status && !["pending", "completed"].includes(status)) {
-            return res.status(400).json({
-                success: false,
-                message: "Invalid status"
-            });
-        }
-
-        const task = await Task.findOneAndUpdate(
-            { _id: req.params.id, userId: req.userId },
-            req.body,
-            { new: true }
-        );
+        const task = await Task.findOne({
+            _id: req.params.id,
+            userId: req.userId
+        });
 
         if (!task) {
             return res.status(404).json({
@@ -76,6 +68,23 @@ exports.updateTask = async (req, res) => {
                 message: "Task not found"
             });
         }
+
+        if (task.status === "completed" && status === "pending") {
+            return res.status(400).json({
+                success: false,
+                message: "Cannot change completed task back to pending"
+            });
+        }
+
+        if (status && !["pending", "completed"].includes(status)) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid status"
+            });
+        }
+
+        task.status = status || task.status;
+        await task.save();
 
         res.json({
             success: true,
