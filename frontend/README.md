@@ -1,152 +1,16 @@
-# 🚀 Myraid Internship Assignment
+# React + Vite
 
-A full-stack task management application built using the MERN stack. Users can register, log in, and manage tasks with authentication and a clean dashboard UI.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
----
+Currently, two official plugins are available:
 
-## 📌 Features
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-* 🔐 User Authentication (JWT + HTTP-only Cookies)
-* ✅ Create, Update, Delete Tasks
-* 📊 Task Statistics Dashboard
-* 🔍 Search & Filter Tasks
-* 🍪 Secure Cookie-Based Authentication
-* 🌐 Fully Deployed (Frontend + Backend)
+## React Compiler
 
----
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## 🛠️ Tech Stack
+## Expanding the ESLint configuration
 
-### Frontend
-
-* React.js
-* Tailwind CSS
-* Axios
-* React Router
-* React Hot Toast
-
-### Backend
-
-* Node.js
-* Express.js
-* MongoDB (Mongoose)
-* JWT Authentication
-* Cookie Parser
-
----
-
-## 🌍 Live Demo
-
-* 🔗 **Frontend:** https://myraid-internship-assignment.vercel.app
-* 🔗 **Backend:** https://myraid-internship-assignment.onrender.com
-
----
-
-## 📂 Project Structure
-
-```
-project-root/
-│
-├── backend/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   └── index.js
-│
-├── frontend/
-│   ├── src/
-│   └── components/
-│
-└── README.md
-```
-
----
-
-## ⚙️ Environment Variables
-
-Create a `.env` file in backend:
-
-```
-PORT=5000
-MONGO_URI=your_mongodb_connection
-JWT_SECRET=your_secret_key
-```
-
----
-
-## 🚀 Installation & Setup
-
-### 1️⃣ Clone the repository
-
-```
-git clone https://github.com/Harsh266/Myraid_Internship_Assignment.git
-cd Myraid_Internship_Assignment
-```
-
----
-
-### 2️⃣ Install dependencies
-
-#### Backend
-
-```
-cd backend
-npm install
-```
-
-#### Frontend
-
-```
-cd frontend
-npm install
-```
-
----
-
-### 3️⃣ Run the project
-
-#### Start backend
-
-```
-npm run dev
-```
-
-#### Start frontend
-
-```
-npm run dev
-```
-
----
-
-## 🔐 Authentication Flow
-
-1. User logs in
-2. JWT token is generated
-3. Token stored in HTTP-only cookies
-4. Protected routes verify token via middleware
-
----
-
-## 🧪 API Endpoints
-
-### Auth
-
-* POST `/api/auth/register`
-* POST `/api/auth/login`
-* GET `/api/auth/me`
-
-### Tasks
-
-* GET `/api/tasks`
-* POST `/api/tasks`
-* PUT `/api/tasks/:id`
-* DELETE `/api/tasks/:id`
-* GET `/api/tasks/stats`
-
----
-## 👨‍💻 Author
-
-**Harsh Vekriya**
-
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
