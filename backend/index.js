@@ -20,11 +20,6 @@ app.use(cors({
     credentials: true
 }));
 
-app.use((req, res) => {
-  res.status(404).json({ message: "Route not found" });
-});
-
-
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 

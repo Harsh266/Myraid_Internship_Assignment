@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://myraid-internship-assignment.onrender.com/api",
+    baseURL: "https://myraid-internship-assignment.onrender.com",
     withCredentials: true
 });
 
