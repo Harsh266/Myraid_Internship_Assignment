@@ -108,6 +108,15 @@ exports.login = async (req, res) => {
     }
 };
 
+exports.getMe = async (req, res) => {
+    const user = await User.findById(req.userId).select("-password");
+
+    res.json({
+        success: true,
+        user
+    });
+};
+
 exports.logout = (req, res) => {
     res.cookie("token", "", {
         httpOnly: true,
