@@ -27,10 +27,15 @@ exports.getTasks = async (req, res) => {
 
         let query = { userId: req.userId };
 
-        if (status) query.status = status;
+        if (status) {
+            query.status = status;
+        }
 
         if (search) {
-            query.title = { $regex: search, $options: "i" };
+            query.$or = [
+                { title: { $regex: search, $options: "i" } },
+                { status: { $regex: search, $options: "i" } }
+            ];
         }
 
         const tasks = await Task.find(query)
@@ -55,7 +60,7 @@ exports.getTasks = async (req, res) => {
 
 exports.updateTask = async (req, res) => {
     try {
-        const { status } = req.body;
+        const { title, description, status } = req.body;
 
         const task = await Task.findOne({
             _id: req.params.id,
@@ -83,7 +88,10 @@ exports.updateTask = async (req, res) => {
             });
         }
 
-        task.status = status || task.status;
+        if (title !== undefined) task.title = title;
+        if (description !== undefined) task.description = description;
+        if (status !== undefined) task.status = status;
+
         await task.save();
 
         res.json({
