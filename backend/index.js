@@ -5,6 +5,10 @@ require("dotenv").config();
 
 const connectDB = require("./config/db");
 
+const authRoutes = require("./routes/authRoutes");
+
+const errorMiddleware = require("./middleware/errorMiddleware");
+
 const app = express();
 
 app.use(express.json());
@@ -15,9 +19,13 @@ app.use(cors({
     credentials: true
 }));
 
+app.use("/api/auth", authRoutes);
+
 app.get("/", (req, res) => {
     res.send("API Running...");
 });
+
+app.use(errorMiddleware);
 
 connectDB();
 
